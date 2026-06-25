@@ -39,7 +39,7 @@ export const projects: Project[] = [
       "Custom-apparel storefront and the flagship FoloEngine host: variable / bundle products, tiered pricing, COD / CliQ payments, Continue-with-Google, Web Push, bilingual EN/AR. Lighthouse SEO 100, CI/CD to VPS.",
     stack: ["Laravel", "FoloEngine", "Tailwind", "GitHub Actions"],
     year: "2025",
-    href: GITHUB,
+    href: "https://foloprint.folowise.com/",
   },
   {
     index: "04",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
       "Pet-supply store delivered in two builds — WordPress / WooCommerce and a Laravel rebuild on FoloEngine. The Laravel build was the first production tenant proving the engine: engine-wired catalog, a 16-page owner admin, and license / capability provisioning. AR-first RTL + SEO.",
     stack: ["Laravel", "FoloEngine", "WooCommerce", "Blade"],
     year: "2025",
-    href: GITHUB,
+    href: "https://opti4club.com/",
   },
   {
     index: "07",
@@ -119,6 +119,6 @@ export const projects: Project[] = [
       "Client construction website built and maintained on WordPress + Elementor: responsive pages with targeted custom CSS, plus full structured QA — logging UI issues by severity and re-testing after each fix.",
     stack: ["WordPress", "Elementor", "CSS", "QA"],
     year: "2024",
-    href: GITHUB,
+    href: "https://buildnovaconstruction.ca/",
   },
 ];
