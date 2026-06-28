@@ -23,6 +23,16 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    title: "EchoFlow",
+    tag: "Desktop app",
+    blurb:
+      "Free, offline English and Arabic voice to text desktop app for Windows. Local Whisper (whisper.cpp via whisper-rs) runs on CPU, no cloud and no paid APIs. Push to talk plus a global hotkey, translate / clean / prompt modes, searchable transcript history, and one click auto update. Tauri 2 Rust core with a React / TypeScript webview.",
+    stack: ["Tauri 2", "Rust", "whisper.cpp", "React / TS"],
+    year: "2026",
+    href: "https://github.com/Mnourkh01/echoflow",
+  },
+  {
+    index: "03",
     title: "Folowise Souq",
     tag: "Live in production",
     blurb:
@@ -32,7 +42,7 @@ export const projects: Project[] = [
     href: GITHUB,
   },
   {
-    index: "03",
+    index: "04",
     title: "FoloPrint",
     tag: "Live in production",
     blurb:
@@ -42,7 +52,7 @@ export const projects: Project[] = [
     href: "https://foloprint.folowise.com/",
   },
   {
-    index: "04",
+    index: "05",
     title: "qrfolo",
     tag: "TypeScript SaaS",
     blurb:
@@ -52,7 +62,7 @@ export const projects: Project[] = [
     href: GITHUB,
   },
   {
-    index: "05",
+    index: "06",
     title: "FoloPrint Design Studio",
     tag: "Render pipeline",
     blurb:
@@ -62,7 +72,7 @@ export const projects: Project[] = [
     href: GITHUB,
   },
   {
-    index: "06",
+    index: "07",
     title: "Pet E-Commerce",
     tag: "Folowise client",
     blurb:
@@ -72,7 +82,7 @@ export const projects: Project[] = [
     href: "https://opti4club.com/",
   },
   {
-    index: "07",
+    index: "08",
     title: "Spring Boot JWT Starter",
     tag: "Open source",
     blurb:
@@ -82,7 +92,7 @@ export const projects: Project[] = [
     href: "https://github.com/Mnourkh01/Starter-Project",
   },
   {
-    index: "08",
+    index: "09",
     title: "URL Shortener",
     tag: "Open source",
     blurb:
@@ -92,7 +102,7 @@ export const projects: Project[] = [
     href: "https://github.com/Mnourkh01/url-shortener",
   },
   {
-    index: "09",
+    index: "10",
     title: "Java 21 Auth Starter",
     tag: "Open source",
     blurb:
@@ -102,7 +112,7 @@ export const projects: Project[] = [
     href: "https://github.com/Mnourkh01/spring-boot-java-starter",
   },
   {
-    index: "10",
+    index: "11",
     title: "folowise.com",
     tag: "Live in production",
     blurb:
@@ -112,7 +122,7 @@ export const projects: Project[] = [
     href: "https://folowise.com",
   },
   {
-    index: "11",
+    index: "12",
     title: "BuildNova",
     tag: "Folowise client",
     blurb:
