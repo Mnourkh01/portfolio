@@ -3,13 +3,13 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight, Github, FileDown } from "lucide-react";
 
 const stats = [
   { num: "230", label: "tests green (qrfolo)" },
   { num: "100", label: "Lighthouse SEO" },
   { num: "19+", label: "gated engine features" },
-  { num: "5", label: "languages shipped" },
+  { num: "5", label: "live in production" },
 ];
 
 export default function Hero() {
@@ -54,8 +54,8 @@ export default function Hero() {
         <p className="hero__meta">
           I&rsquo;m Mohammad&nbsp;Nour, a backend engineer in Amman. I build
           secure, multi-tenant backend systems in Java, Kotlin, PHP, and
-          TypeScript &mdash; and own them end to end, from API contracts to
-          CI/CD and production.
+          TypeScript, and own them end to end, from API contracts to CI/CD and
+          production.
         </p>
 
         <div className="hero__cta">
@@ -71,6 +71,16 @@ export default function Hero() {
           >
             <Github size={17} strokeWidth={1.8} aria-hidden="true" />
             GitHub
+          </a>
+          <a
+            className="btn btn--ghost"
+            href="/Mohammad-Nour-CV.pdf"
+            target="_blank"
+            rel="noreferrer"
+            download
+          >
+            <FileDown size={17} strokeWidth={1.8} aria-hidden="true" />
+            Resume
           </a>
         </div>
 

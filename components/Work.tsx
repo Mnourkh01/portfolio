@@ -5,10 +5,10 @@ export default function Work() {
   return (
     <section className="work" id="work">
       <div className="shell">
-        <div className="section-label">
-          <span className="num">02</span> Selected work
-          <span className="rule" />
-        </div>
+        <h2 className="section-label">
+          <span className="num" aria-hidden="true">02</span> Selected work
+          <span className="rule" aria-hidden="true" />
+        </h2>
 
         <div className="projects">
           {projects.map((p) => (

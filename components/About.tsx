@@ -1,10 +1,10 @@
 export default function About() {
   return (
     <section className="about shell" id="about">
-      <div className="section-label">
-        <span className="num">01</span> About
-        <span className="rule" />
-      </div>
+      <h2 className="section-label">
+        <span className="num" aria-hidden="true">01</span> About
+        <span className="rule" aria-hidden="true" />
+      </h2>
 
       <div className="about__grid">
         <p className="about__lead reveal">
@@ -29,7 +29,7 @@ export default function About() {
           </p>
           <p>
             I work in an AI-driven workflow (Claude Code, Codex, Cursor) and
-            build AI into products &mdash; RAG and tool-using agents. Bilingual
+            build AI into products: RAG and tool-using agents. Bilingual
             EN&nbsp;/&nbsp;AR.
           </p>
         </div>

@@ -39,10 +39,10 @@ const columns = [
 export default function Skills() {
   return (
     <section className="skills shell" id="stack">
-      <div className="section-label">
-        <span className="num">03</span> Stack
-        <span className="rule" />
-      </div>
+      <h2 className="section-label">
+        <span className="num" aria-hidden="true">03</span> Stack
+        <span className="rule" aria-hidden="true" />
+      </h2>
 
       <div className="skills__grid">
         {columns.map((col) => {

@@ -21,8 +21,8 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Mohammad Nour — Backend Engineer",
-    template: "%s — Mohammad Nour",
+    default: "Mohammad Nour · Backend Engineer",
+    template: "%s · Mohammad Nour",
   },
   description: DESCRIPTION,
   keywords: [
@@ -51,14 +51,14 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Mohammad Nour",
-    title: "Mohammad Nour — Backend Engineer",
+    title: "Mohammad Nour · Backend Engineer",
     description:
       "Secure, multi-tenant backend systems in Java, Kotlin, PHP & TypeScript.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohammad Nour — Backend Engineer",
+    title: "Mohammad Nour · Backend Engineer",
     description:
       "Secure, multi-tenant backend systems in Java, Kotlin, PHP & TypeScript.",
   },

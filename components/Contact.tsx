@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, FileDown, Github, Linkedin, Mail } from "lucide-react";
 
 const EMAIL = "m.nourkh01@gmail.com";
 const GITHUB = "https://github.com/Mnourkh01";
@@ -34,6 +34,16 @@ export default function Contact() {
           >
             <Github size={17} strokeWidth={1.8} aria-hidden="true" />
             GitHub
+          </a>
+          <a
+            className="btn btn--ghost"
+            href="/Mohammad-Nour-CV.pdf"
+            target="_blank"
+            rel="noreferrer"
+            download
+          >
+            <FileDown size={17} strokeWidth={1.8} aria-hidden="true" />
+            Download CV
           </a>
         </div>
 

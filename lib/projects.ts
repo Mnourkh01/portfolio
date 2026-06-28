@@ -76,7 +76,7 @@ export const projects: Project[] = [
     title: "Pet E-Commerce",
     tag: "Folowise client",
     blurb:
-      "Pet-supply store delivered in two builds — WordPress / WooCommerce and a Laravel rebuild on FoloEngine. The Laravel build was the first production tenant proving the engine: engine-wired catalog, a 16-page owner admin, and license / capability provisioning. AR-first RTL + SEO.",
+      "Pet-supply store delivered in two builds: WordPress / WooCommerce and a Laravel rebuild on FoloEngine. The Laravel build was the first production tenant proving the engine: engine-wired catalog, a 16-page owner admin, and license / capability provisioning. AR-first RTL + SEO.",
     stack: ["Laravel", "FoloEngine", "WooCommerce", "Blade"],
     year: "2025",
     href: "https://opti4club.com/",
@@ -126,7 +126,7 @@ export const projects: Project[] = [
     title: "BuildNova",
     tag: "Folowise client",
     blurb:
-      "Client construction website built and maintained on WordPress + Elementor: responsive pages with targeted custom CSS, plus full structured QA — logging UI issues by severity and re-testing after each fix.",
+      "Client construction website built and maintained on WordPress + Elementor: responsive pages with targeted custom CSS, plus full structured QA, logging UI issues by severity and re-testing after each fix.",
     stack: ["WordPress", "Elementor", "CSS", "QA"],
     year: "2024",
     href: "https://buildnovaconstruction.ca/",

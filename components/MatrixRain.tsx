@@ -67,6 +67,7 @@ export default function MatrixRain() {
 
     const loop = (t: number) => {
       raf = requestAnimationFrame(loop);
+      if (document.hidden) return; // don't paint while tab is backgrounded
       if (t - last < 55) return; // ~18fps "step" cadence, classic + cheap
       last = t;
       draw();
