@@ -1,4 +1,5 @@
 import { ArrowUpRight, FileDown, Github, Linkedin, Mail } from "lucide-react";
+import LogoMark from "@/components/LogoMark";
 
 const EMAIL = "m.nourkh01@gmail.com";
 const GITHUB = "https://github.com/Mnourkh01";
@@ -8,8 +9,6 @@ const LINKEDIN =
 export default function Contact() {
   return (
     <section className="contact" id="contact">
-      <span className="orb" aria-hidden="true" />
-
       <div className="shell contact__inner">
         <div className="section-label">
           <span className="num">04</span> Contact
@@ -73,6 +72,7 @@ export default function Contact() {
             </a>
           </div>
           <span className="contact__copyright">
+            <LogoMark height={16} className="contact__mark" />
             &copy; 2026 Mohammad Nour &middot; Amman, Jordan
           </span>
         </div>

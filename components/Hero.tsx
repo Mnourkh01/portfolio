@@ -21,7 +21,8 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
       tl.from(".hero__line > span", { yPercent: 120, duration: 1.1, stagger: 0.12 })
         .from(".hero__badge", { autoAlpha: 0, y: 14, duration: 0.7 }, "-=0.8")
-        .from(".hero__meta", { autoAlpha: 0, y: 16, duration: 0.7 }, "-=0.55")
+        // transform-only: hero__meta is the LCP element, never hide it
+        .from(".hero__meta", { y: 18, duration: 0.7 }, "-=0.55")
         .from(".hero__cta", { autoAlpha: 0, y: 16, duration: 0.7 }, "-=0.5")
         .from(
           ".hero__stats .stat",
@@ -36,8 +37,11 @@ export default function Hero() {
     <section className="hero" id="top" ref={root}>
       <div className="shell hero__inner">
         <div className="badge hero__badge">
-          <span className="dot" aria-hidden="true" />
-          Available for backend / full-stack roles
+          <span className="badge__prompt" aria-hidden="true">
+            ~$
+          </span>
+          status: open to backend / full-stack roles
+          <span className="badge__cursor" aria-hidden="true" />
         </div>
 
         <h1 className="hero__title">

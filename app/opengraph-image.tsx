@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { LOGO_BARS, LOGO_VIEWBOX } from "@/lib/logo";
 
 export const dynamic = "force-static";
 export const alt = "Mohammad Nour · Backend Engineer";
@@ -57,19 +58,23 @@ export default function OpengraphImage() {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: 8,
-                background: "#00ff5f",
-              }}
-            />
-            <div style={{ fontSize: 26, letterSpacing: 6, color: "#7fbf90" }}>
-              M.NOUR
-            </div>
-          </div>
+          <svg
+            viewBox={LOGO_VIEWBOX}
+            width={106}
+            height={76}
+            fill="#00ff5f"
+          >
+            {LOGO_BARS.map(([x, y, w, h, rx]) => (
+              <rect
+                key={`${x}-${y}`}
+                x={x}
+                y={y}
+                width={w}
+                height={h}
+                rx={rx}
+              />
+            ))}
+          </svg>
           <div style={{ fontSize: 24, color: "#4d7a59" }}>github.com/Mnourkh01</div>
         </div>
 

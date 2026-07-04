@@ -11,7 +11,7 @@
 
   --text:      #cdeed4;
   --text-soft: #7fbf90;
-  --muted:     #4d7a59;
+  --muted:     #5b8e69; /* >=4.5:1 on both bg and card surfaces */
 
   --green:      #00ff5f;
   --green-dim:  #19c558;
@@ -125,6 +125,7 @@ img, canvas { display: block; max-width: 100%; }
   color: var(--green-dim);
 }
 
+/* Terminal status line (not a pill) */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -133,18 +134,19 @@ img, canvas { display: block; max-width: 100%; }
   font-size: var(--step--1);
   letter-spacing: 0.04em;
   color: var(--text-soft);
-  padding: 0.45em 0.9em;
+  padding: 0.5em 0.95em;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--surface);
 }
-.badge .dot {
-  width: 7px; height: 7px; border-radius: 50%;
+.badge__prompt { color: var(--green); text-shadow: 0 0 12px var(--glow); }
+.badge__cursor {
+  width: 0.55em; height: 1.05em;
   background: var(--green);
   box-shadow: 0 0 10px var(--glow);
-  animation: pulse 1.8s steps(2, jump-none) infinite;
+  animation: blink 1.1s steps(2, jump-none) infinite;
 }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
 .section-label {
   display: flex;
@@ -226,8 +228,14 @@ img, canvas { display: block; max-width: 100%; }
   background: linear-gradient(to bottom, rgba(2,4,2,0.9), transparent);
   backdrop-filter: blur(6px);
 }
-.nav__mark { font-family: var(--font-mono); font-weight: 700; font-size: var(--step-1); letter-spacing: -0.02em; }
-.nav__mark span { color: var(--green); text-shadow: 0 0 14px var(--glow); }
+.nav__mark {
+  display: inline-flex;
+  align-items: center;
+  color: var(--green);
+  transition: filter var(--d-base) var(--ease-out-expo);
+}
+.nav__mark svg { filter: drop-shadow(0 0 9px var(--glow)); }
+.nav__mark:hover svg { filter: drop-shadow(0 0 16px var(--glow)); }
 .nav__links { display: flex; gap: clamp(1rem, 2.5vw, 2.2rem); }
 .nav__link {
   font-family: var(--font-mono);
@@ -237,7 +245,10 @@ img, canvas { display: block; max-width: 100%; }
   transition: color var(--d-fast) var(--ease-out-expo), text-shadow var(--d-fast);
 }
 .nav__link:hover { color: var(--green); text-shadow: 0 0 14px var(--glow); }
-@media (max-width: 640px) { .nav__links { display: none; } }
+@media (max-width: 640px) {
+  .nav__links { gap: 0.9rem; }
+  .nav__link { font-size: 0.72rem; letter-spacing: 0.02em; }
+}
 
 /* ============================================================
    Hero
@@ -361,7 +372,11 @@ img, canvas { display: block; max-width: 100%; }
   transition: color var(--d-fast) var(--ease-out-expo), text-shadow var(--d-fast);
 }
 .contact__link:hover { color: var(--green); text-shadow: 0 0 14px var(--glow); }
-.contact__copyright { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+.contact__copyright {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted);
+}
+.contact__mark { color: var(--green-deep); flex: none; }
 
 /* ============================================================
    Reduced motion
