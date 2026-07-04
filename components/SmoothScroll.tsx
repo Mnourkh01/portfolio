@@ -15,14 +15,29 @@ export default function SmoothScroll({
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    const lenis = new Lenis({ duration: 0.8, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
 
     const raf = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
+    // Route anchor clicks through Lenis (CSS scroll-behavior is off:
+    // it double-smooths against Lenis and makes wheel input feel heavy).
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement).closest<HTMLAnchorElement>(
+        'a[href^="#"]'
+      );
+      if (!link || link.hash.length < 2) return;
+      const target = document.querySelector(link.hash);
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target as HTMLElement, { offset: -8 });
+    };
+    document.addEventListener("click", onClick);
+
     return () => {
+      document.removeEventListener("click", onClick);
       gsap.ticker.remove(raf);
       lenis.destroy();
     };

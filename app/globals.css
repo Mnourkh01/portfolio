@@ -4,8 +4,10 @@
 :root {
   --bg:        #020402;
   --bg-2:      #04060420;
-  --surface:   rgba(0, 25, 8, 0.45);
-  --surface-2: rgba(0, 35, 12, 0.6);
+  /* Opaque enough to stay readable over the rain WITHOUT backdrop-filter
+     (blur over an animated canvas forces continuous re-raster = scroll jank) */
+  --surface:   rgba(1, 12, 5, 0.78);
+  --surface-2: rgba(2, 18, 7, 0.85);
   --border:    rgba(0, 255, 95, 0.18);
   --border-2:  rgba(0, 255, 95, 0.42);
 
@@ -46,7 +48,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+/* No CSS smooth scrolling: Lenis owns scroll; both together double-smooth
+   and make wheel input feel heavy. Anchors route through lenis.scrollTo. */
+html { -webkit-font-smoothing: antialiased; }
 
 body {
   background: var(--bg);
@@ -84,7 +88,6 @@ body::after {
   background:
     repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,0.22) 3px),
     radial-gradient(120% 120% at 50% 40%, transparent 60%, rgba(0,0,0,0.55) 100%);
-  mix-blend-mode: multiply;
   opacity: 0.5;
 }
 
@@ -196,7 +199,6 @@ img, canvas { display: block; max-width: 100%; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  backdrop-filter: blur(3px);
   transition: border-color var(--d-base) var(--ease-out-expo),
               box-shadow var(--d-base) var(--ease-out-expo);
 }
@@ -210,7 +212,6 @@ img, canvas { display: block; max-width: 100%; }
   transform: translateY(24px);
   transition: opacity var(--d-slow) var(--ease-out-expo),
               transform var(--d-slow) var(--ease-out-expo);
-  will-change: opacity, transform;
 }
 .reveal.is-in { opacity: 1; transform: none; }
 
@@ -225,8 +226,7 @@ img, canvas { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   padding: clamp(0.9rem, 1.8vw, 1.4rem) var(--gutter);
-  background: linear-gradient(to bottom, rgba(2,4,2,0.9), transparent);
-  backdrop-filter: blur(6px);
+  background: linear-gradient(to bottom, rgba(2,4,2,0.95), rgba(2,4,2,0.55) 70%, transparent);
 }
 .nav__mark {
   display: inline-flex;
