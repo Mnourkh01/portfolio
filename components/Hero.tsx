@@ -3,7 +3,12 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { ArrowRight, Github, FileDown } from "lucide-react";
+
+gsap.registerPlugin(ScrambleTextPlugin);
+
+const SCRAMBLE_CHARS = "アカサタナハマ0123456789<>/#";
 
 const stats = [
   { num: "230", label: "tests green (qrfolo)" },
@@ -28,6 +33,17 @@ export default function Hero() {
           ".hero__stats .stat",
           { autoAlpha: 0, y: 18, duration: 0.6, stagger: 0.08 },
           "-=0.45"
+        )
+        // decode ONLY the headline accent word (.grad-text is also used by the
+        // stat numbers, so scope the selector to the title).
+        .to(
+          ".hero__title .grad-text",
+          {
+            duration: 1,
+            ease: "none",
+            scrambleText: { text: "craft", chars: SCRAMBLE_CHARS, speed: 0.5 },
+          },
+          0.85
         );
     },
     { scope: root }

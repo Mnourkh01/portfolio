@@ -2,7 +2,8 @@ export default function About() {
   return (
     <section className="about shell" id="about">
       <h2 className="section-label">
-        <span className="num" aria-hidden="true">01</span> About
+        <span className="num" aria-hidden="true">01</span>{" "}
+        <span className="scramble">About</span>
         <span className="rule" aria-hidden="true" />
       </h2>
 

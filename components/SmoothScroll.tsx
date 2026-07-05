@@ -1,47 +1,50 @@
 "use client";
 
-import { useEffect } from "react";
-import Lenis from "lenis";
+import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
+
+/**
+ * Scroll provider. Uses NATIVE scroll on purpose: this project pins a horizontal
+ * gallery, and momentum smooth-scroll engines (Lenis, ScrollSmoother) both fought
+ * the pin here and broke programmatic scroll. Native scroll + ScrollTrigger is the
+ * robust path the GSAP demos themselves use. Anchor clicks are eased via
+ * ScrollToPlugin so navigation still feels smooth.
+ */
 export default function SmoothScroll({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  useGSAP(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    const lenis = new Lenis({ duration: 0.8, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-
-    const raf = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
-
-    // Route anchor clicks through Lenis (CSS scroll-behavior is off:
-    // it double-smooths against Lenis and makes wheel input feel heavy).
     const onClick = (e: MouseEvent) => {
       const link = (e.target as HTMLElement).closest<HTMLAnchorElement>(
         'a[href^="#"]'
       );
       if (!link || link.hash.length < 2) return;
-      const target = document.querySelector(link.hash);
+      const target = document.querySelector(link.hash) as HTMLElement | null;
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target as HTMLElement, { offset: -8 });
+      if (reduce) {
+        target.scrollIntoView();
+        return;
+      }
+      gsap.to(window, {
+        duration: 0.8,
+        ease: "power2.inOut",
+        scrollTo: { y: target, offsetY: 72 }, // clear the fixed nav
+        overwrite: "auto",
+      });
     };
-    document.addEventListener("click", onClick);
 
-    return () => {
-      document.removeEventListener("click", onClick);
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-    };
-  }, []);
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  });
 
   return <>{children}</>;
 }

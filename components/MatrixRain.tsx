@@ -23,10 +23,16 @@ export default function MatrixRain() {
     let drops: number[] = [];
     let raf = 0;
     let last = 0;
+    // Cache viewport size here. Reading parent.clientWidth/Height inside draw()
+    // forced a synchronous layout every frame; while scrolling (layout already
+    // dirty) that reflow was the main scroll-jank source. Size only changes on
+    // resize, so measure it in setup() and reuse the cached values.
+    let w = 0;
+    let h = 0;
 
     const setup = () => {
-      const w = parent.clientWidth;
-      const h = parent.clientHeight;
+      w = parent.clientWidth;
+      h = parent.clientHeight;
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = `${w}px`;
@@ -39,8 +45,6 @@ export default function MatrixRain() {
     };
 
     const draw = () => {
-      const w = parent.clientWidth;
-      const h = parent.clientHeight;
       // Fade previous frame to build trailing tails.
       ctx.fillStyle = "rgba(2, 4, 2, 0.11)";
       ctx.fillRect(0, 0, w, h);
@@ -65,9 +69,18 @@ export default function MatrixRain() {
       }
     };
 
+    // Freeze the rain while the horizontal gallery is pinned (Work.tsx dispatches
+    // this). The gallery covers the screen, so a static backdrop is invisible and
+    // the freed main thread keeps the scrub smooth on fast scroll.
+    let frozen = false;
+    const onGalleryPinned = (e: Event) => {
+      frozen = (e as CustomEvent<boolean>).detail;
+    };
+    window.addEventListener("gallery:pinned", onGalleryPinned);
+
     const loop = (t: number) => {
       raf = requestAnimationFrame(loop);
-      if (document.hidden) return; // don't paint while tab is backgrounded
+      if (document.hidden || frozen) return; // skip paint when hidden or pinned
       if (t - last < 55) return; // ~18fps "step" cadence, classic + cheap
       last = t;
       draw();
@@ -81,7 +94,7 @@ export default function MatrixRain() {
       ctx.fillStyle = "rgba(0, 255, 95, 0.22)";
       for (let i = 0; i < cols; i++) {
         const ch = CHARS[(Math.random() * CHARS.length) | 0];
-        ctx.fillText(ch, i * fontSize, (Math.random() * parent.clientHeight) | 0);
+        ctx.fillText(ch, i * fontSize, (Math.random() * h) | 0);
       }
       return;
     }
@@ -92,6 +105,7 @@ export default function MatrixRain() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("gallery:pinned", onGalleryPinned);
     };
   }, []);
 

@@ -11,7 +11,8 @@ export default function Contact() {
     <section className="contact" id="contact">
       <div className="shell contact__inner">
         <div className="section-label">
-          <span className="num">04</span> Contact
+          <span className="num">04</span>{" "}
+          <span className="scramble">Contact</span>
           <span className="rule" />
         </div>
 

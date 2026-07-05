@@ -48,8 +48,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-/* No CSS smooth scrolling: Lenis owns scroll; both together double-smooth
-   and make wheel input feel heavy. Anchors route through lenis.scrollTo. */
+/* Native scroll (no smooth-scroll engine - it fought the pinned gallery).
+   Keep CSS scroll-behavior OFF so it can't double-smooth against the
+   ScrollToPlugin anchor tweens or skew ScrollTrigger measurements on resize. */
 html { -webkit-font-smoothing: antialiased; }
 
 body {
@@ -178,9 +179,12 @@ img, canvas { display: block; max-width: 100%; }
   cursor: pointer;
   transition: transform var(--d-fast) var(--ease-out-expo),
               box-shadow var(--d-base) var(--ease-out-expo),
-              background var(--d-base) var(--ease-out-expo),
+              background-size var(--d-base) var(--ease-out-expo),
+              background-color var(--d-base) var(--ease-out-expo),
               color var(--d-base) var(--ease-out-expo);
 }
+.btn svg { transition: transform var(--d-base) var(--ease-out-expo); }
+.btn:hover svg { transform: translateX(3px); }
 .btn--primary {
   background: var(--green);
   color: #021008;
@@ -190,8 +194,23 @@ img, canvas { display: block; max-width: 100%; }
 }
 .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px -2px var(--glow); }
 .btn--primary:active { transform: translateY(0) scale(0.98); }
-.btn--ghost { background: var(--surface); color: var(--green); }
-.btn--ghost:hover { transform: translateY(-2px); background: var(--surface-2); box-shadow: 0 0 22px -8px var(--glow); }
+/* Terminal fill-sweep: a green wipe grows from the left on hover. Uses
+   background-size (not a pseudo-element) so the label never gets covered. */
+.btn--ghost {
+  color: var(--green);
+  background-color: var(--surface);
+  background-image: linear-gradient(var(--green), var(--green));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+}
+.btn--ghost:hover {
+  transform: translateY(-2px);
+  color: #021008;
+  border-color: var(--green);
+  background-size: 100% 100%;
+  box-shadow: 0 0 22px -8px var(--glow);
+}
 
 /* Terminal card */
 .card {
@@ -207,13 +226,10 @@ img, canvas { display: block; max-width: 100%; }
 /* ============================================================
    Reveal
    ============================================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity var(--d-slow) var(--ease-out-expo),
-              transform var(--d-slow) var(--ease-out-expo);
-}
-.reveal.is-in { opacity: 1; transform: none; }
+/* Initial hidden state. GSAP (Reveals.tsx) animates these in on scroll and
+   owns the transform each frame, so there is deliberately NO CSS transition
+   here (a CSS transition would fight GSAP's per-frame updates). */
+.reveal { opacity: 0; transform: translateY(24px); }
 
 /* ============================================================
    Nav
@@ -245,6 +261,11 @@ img, canvas { display: block; max-width: 100%; }
   transition: color var(--d-fast) var(--ease-out-expo), text-shadow var(--d-fast);
 }
 .nav__link:hover { color: var(--green); text-shadow: 0 0 14px var(--glow); }
+.nav__link.is-active { color: var(--green); }
+.nav__link.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+  height: 1px; background: var(--green); box-shadow: 0 0 10px var(--glow);
+}
 @media (max-width: 640px) {
   .nav__links { gap: 0.9rem; }
   .nav__link { font-size: 0.72rem; letter-spacing: 0.02em; }
@@ -296,8 +317,19 @@ img, canvas { display: block; max-width: 100%; }
    Work
    ============================================================ */
 .work { padding-block: var(--section-y); position: relative; }
-.projects { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-@media (min-width: 760px) { .projects { grid-template-columns: repeat(2, 1fr); } }
+
+/* Gallery: vertical grid on mobile / reduced-motion; horizontal pinned track
+   on desktop (pin + snap wired in Work.tsx). */
+.gallery { position: relative; }
+.gallery__track {
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+  padding-inline: var(--gutter);
+}
+@media (min-width: 620px) and (max-width: 899px) {
+  .gallery__track { grid-template-columns: repeat(2, 1fr); }
+}
+.gallery__hint { display: none; }
+
 .project {
   display: flex; flex-direction: column; gap: 0.9rem;
   padding: clamp(1.4rem, 3vw, 2rem);
@@ -305,8 +337,36 @@ img, canvas { display: block; max-width: 100%; }
               border-color var(--d-base) var(--ease-out-expo),
               box-shadow var(--d-base) var(--ease-out-expo);
 }
-.project:first-child { grid-column: 1 / -1; }
 .project:hover { transform: translateY(-4px); }
+
+/* Reduced-motion desktop: no pin, just a clean static grid. */
+@media (min-width: 900px) and (prefers-reduced-motion: reduce) {
+  .gallery__track { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Desktop + motion allowed: horizontal pinned gallery (pin/snap in Work.tsx).
+   Gated on prefers-reduced-motion so the motion path and the JS branch match. */
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .gallery { height: 100vh; overflow: hidden; display: flex; align-items: center; }
+  .gallery__track {
+    display: flex; flex-wrap: nowrap; align-items: stretch;
+    grid-template-columns: none;
+    gap: clamp(1rem, 2vw, 1.8rem);
+    width: max-content; height: min(66vh, 600px);
+  }
+  .gallery__panel { flex: 0 0 clamp(340px, 40vw, 540px); height: 100%; }
+  .gallery__panel:first-child { flex-basis: clamp(420px, 52vw, 680px); }
+  .gallery__panel:hover { transform: none; } /* no vertical lift inside the track */
+  .gallery__hint {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    position: absolute; right: var(--gutter); bottom: clamp(1.5rem, 5vh, 3.2rem);
+    font-family: var(--font-mono); font-size: var(--step--1);
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    pointer-events: none;
+  }
+  .gallery__hint svg { color: var(--green); animation: nudge 1.4s var(--ease-out-expo) infinite; }
+}
+@keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 .project__top { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); }
 .project__index { font-size: var(--step--1); color: var(--green); letter-spacing: 0.1em; }
 .project__tagline { display: inline-flex; align-items: center; gap: 0.8rem; }

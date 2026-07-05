@@ -40,7 +40,8 @@ export default function Skills() {
   return (
     <section className="skills shell" id="stack">
       <h2 className="section-label">
-        <span className="num" aria-hidden="true">03</span> Stack
+        <span className="num" aria-hidden="true">03</span>{" "}
+        <span className="scramble">Stack</span>
         <span className="rule" aria-hidden="true" />
       </h2>
 
