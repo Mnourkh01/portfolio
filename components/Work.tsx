@@ -37,10 +37,10 @@ function buildSeamlessLoop(
     paused: true,
     repeat: -1,
     onRepeat() {
-      // works around a rare edge-case bug fixed in GSAP 3.6.1
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const t = this as any;
-      t._time === t._dur && (t._tTime += t._dur - 0.01);
+      // works around a rare edge-case bug fixed in GSAP 3.6.1; reaches into
+      // GSAP's private fields, hence the structural cast
+      const t = this as unknown as { _time: number; _dur: number; _tTime: number };
+      if (t._time === t._dur) t._tTime += t._dur - 0.01;
     },
   });
   const l = items.length + overlap * 2;
