@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+import { Archivo, Archivo_Black, IBM_Plex_Mono } from "next/font/google";
 import { SITE_URL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 import "./globals.css";
 
-const geist = Geist({
+const sans = Archivo({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-sans-a",
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const display = Archivo_Black({
   subsets: ["latin"],
-  variable: "--font-mono-jb",
+  weight: "400",
+  variable: "--font-display-a",
+  display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono-plex",
   display: "swap",
 });
 
@@ -64,7 +72,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = { themeColor: "#020402" };
+export const viewport = { themeColor: "#131417" };
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -98,7 +106,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      className={`${sans.variable} ${display.variable} ${mono.variable}`}
+    >
       <body>
         {children}
         <script

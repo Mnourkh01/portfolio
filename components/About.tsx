@@ -1,19 +1,22 @@
+import Screws from "@/components/Screws";
+
 export default function About() {
   return (
     <section className="about shell" id="about">
       <h2 className="section-label">
         <span className="num" aria-hidden="true">01</span>{" "}
-        <span className="scramble">About</span>
+        <span>About</span>
         <span className="rule" aria-hidden="true" />
       </h2>
 
       <div className="about__grid">
         <p className="about__lead reveal">
           I build secure, multi-tenant backend systems and{" "}
-          <span className="grad-text">ship them to production</span>.
+          <span className="accent">ship them to production</span>.
         </p>
 
         <div className="about__body reveal">
+          <Screws />
           <p>
             At <strong>Folowise</strong> I architected and built{" "}
             <strong>FoloEngine</strong>, a licensed multi-tenant commerce engine

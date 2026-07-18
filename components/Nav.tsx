@@ -5,6 +5,7 @@ export default function Nav() {
     <nav className="nav">
       <a href="#top" className="nav__mark" aria-label="Mohammad Nour, home">
         <LogoMark height={24} />
+        <span className="led led--red led--pulse" aria-hidden="true" />
       </a>
       <div className="nav__links">
         <a className="nav__link" href="#about">

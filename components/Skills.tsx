@@ -1,4 +1,5 @@
 import { Code2, Server, Wrench } from "lucide-react";
+import Screws from "@/components/Screws";
 
 const columns = [
   {
@@ -41,7 +42,7 @@ export default function Skills() {
     <section className="skills shell" id="stack">
       <h2 className="section-label">
         <span className="num" aria-hidden="true">03</span>{" "}
-        <span className="scramble">Stack</span>
+        <span>Stack</span>
         <span className="rule" aria-hidden="true" />
       </h2>
 
@@ -50,6 +51,7 @@ export default function Skills() {
           const Icon = col.icon;
           return (
             <div className="card skills__col reveal" key={col.title}>
+              <Screws />
               <h3>
                 <Icon size={20} strokeWidth={1.6} aria-hidden="true" />
                 {col.title}

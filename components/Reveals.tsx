@@ -3,12 +3,10 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrambleTextPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const NAV_IDS = ["about", "work", "stack", "contact"];
-const SCRAMBLE_CHARS = "アカサタナハマ0123456789<>/#";
 
 export default function Reveals() {
   useGSAP(() => {
@@ -19,7 +17,9 @@ export default function Reveals() {
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       ScrollTrigger.batch(".reveal", {
         start: "top 85%",
-        onEnter: (batch) =>
+        onEnter: (batch) => {
+          // power-on surge for modules (CSS .card.is-on animation)
+          batch.forEach((el) => el.classList.add("is-on"));
           gsap.to(batch, {
             autoAlpha: 1,
             y: 0,
@@ -27,28 +27,8 @@ export default function Reveals() {
             ease: "power3.out",
             stagger: 0.08,
             overwrite: true,
-          }),
-      });
-
-      // Section headings decode in (Matrix scramble) when they enter view.
-      gsap.utils.toArray<HTMLElement>(".scramble").forEach((el) => {
-        const text = el.textContent || "";
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top 88%",
-          once: true,
-          onEnter: () =>
-            gsap.to(el, {
-              duration: 0.9,
-              ease: "none",
-              scrambleText: {
-                text,
-                chars: SCRAMBLE_CHARS,
-                speed: 0.7,
-                revealDelay: 0.15,
-              },
-            }),
-        });
+          });
+        },
       });
 
       // Failsafe: if a .reveal never crosses the trigger (short pages, odd
@@ -59,8 +39,8 @@ export default function Reveals() {
       return () => window.clearTimeout(failsafe);
     });
 
-    // Scroll-spy: light the matching nav link while its section is centered.
-    // Independent of motion preference (it is just a class toggle).
+    // Scroll-spy: light the matching nav link's LED while its section is
+    // centered. Independent of motion preference (it is just a class toggle).
     NAV_IDS.forEach((id) => {
       const sec = document.getElementById(id);
       const link = document.querySelector<HTMLAnchorElement>(
@@ -75,9 +55,9 @@ export default function Reveals() {
       });
     });
 
-    // Spy/reveal positions depend on the pinned gallery's height. If fonts (or
-    // the canvas) shift layout after these triggers are created, positions go
-    // stale (sections appear to start near the top). Refresh once fonts settle.
+    // Spy/reveal positions depend on the pinned rack's height. If fonts shift
+    // layout after these triggers are created, positions go stale (sections
+    // appear to start near the top). Refresh once fonts settle.
     if (typeof document !== "undefined" && "fonts" in document) {
       document.fonts.ready.then(() => ScrollTrigger.refresh());
     }

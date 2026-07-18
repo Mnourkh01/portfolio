@@ -18,8 +18,8 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#020402",
-          color: "#e9ecf6",
+          background: "#0e1013",
+          color: "#ece7dd",
           padding: "72px",
           fontFamily: "monospace",
           position: "relative",
@@ -33,7 +33,7 @@ export default function OpengraphImage() {
             top: 0,
             bottom: 0,
             width: 12,
-            background: "#00ff5f",
+            background: "#ff5c1c",
           }}
         />
         {/* glow */}
@@ -45,7 +45,7 @@ export default function OpengraphImage() {
             width: 520,
             height: 520,
             borderRadius: 9999,
-            background: "rgba(0,255,95,0.18)",
+            background: "rgba(255,159,28,0.12)",
             filter: "blur(40px)",
           }}
         />
@@ -62,7 +62,7 @@ export default function OpengraphImage() {
             viewBox={LOGO_VIEWBOX}
             width={106}
             height={76}
-            fill="#00ff5f"
+            fill="#ffb454"
           >
             {LOGO_BARS.map(([x, y, w, h, rx]) => (
               <rect
@@ -75,7 +75,7 @@ export default function OpengraphImage() {
               />
             ))}
           </svg>
-          <div style={{ fontSize: 24, color: "#4d7a59" }}>github.com/Mnourkh01</div>
+          <div style={{ fontSize: 24, color: "#8a8577" }}>github.com/Mnourkh01</div>
         </div>
 
         {/* headline */}
@@ -83,7 +83,7 @@ export default function OpengraphImage() {
           <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1 }}>
             Mohammad Nour
           </div>
-          <div style={{ fontSize: 36, color: "#00ff5f" }}>
+          <div style={{ fontSize: 36, color: "#ffb454" }}>
             Backend Engineer · backend-focused full-stack
           </div>
         </div>
@@ -96,8 +96,8 @@ export default function OpengraphImage() {
               style={{
                 display: "flex",
                 fontSize: 24,
-                color: "#cdeed4",
-                border: "1px solid rgba(0,255,95,0.35)",
+                color: "#b5ae9c",
+                border: "1px solid rgba(236,231,221,0.25)",
                 borderRadius: 999,
                 padding: "8px 20px",
               }}

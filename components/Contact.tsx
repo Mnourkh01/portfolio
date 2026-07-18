@@ -11,14 +11,13 @@ export default function Contact() {
     <section className="contact" id="contact">
       <div className="shell contact__inner">
         <div className="section-label">
-          <span className="num">04</span>{" "}
-          <span className="scramble">Contact</span>
+          <span className="num">04</span> <span>Contact</span>
           <span className="rule" />
         </div>
 
         <h2 className="contact__big reveal">
           Let&rsquo;s build something that{" "}
-          <span className="grad-text">stays calm under load</span>.
+          <em>stays calm under load</em>.
         </h2>
 
         <div className="contact__cta reveal">
@@ -27,7 +26,7 @@ export default function Contact() {
             <ArrowUpRight size={18} strokeWidth={2} aria-hidden="true" />
           </a>
           <a
-            className="btn btn--ghost"
+            className="btn btn--alu"
             href={GITHUB}
             target="_blank"
             rel="noreferrer"
@@ -36,7 +35,7 @@ export default function Contact() {
             GitHub
           </a>
           <a
-            className="btn btn--ghost"
+            className="btn btn--alu"
             href="/Mohammad-Nour-CV.pdf"
             target="_blank"
             rel="noreferrer"
@@ -74,7 +73,7 @@ export default function Contact() {
           </div>
           <span className="contact__copyright">
             <LogoMark height={16} className="contact__mark" />
-            &copy; 2026 Mohammad Nour &middot; Amman, Jordan
+            Ser. no. 2026 &middot; Mohammad Nour &middot; Amman, Jordan
           </span>
         </div>
       </div>

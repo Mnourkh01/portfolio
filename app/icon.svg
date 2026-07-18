@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 760">
-  <rect width="760" height="760" rx="120" fill="#020402" />
-  <g fill="#00ff5f" transform="translate(61.5 151)">
+  <rect width="760" height="760" rx="120" fill="#0e1013" />
+  <g fill="#ffb454" transform="translate(61.5 151)">
     <rect x="0" y="0" width="17" height="101" rx="6" />
     <rect x="0" y="120" width="17" height="101" rx="6" />
     <rect x="0" y="240" width="17" height="100" rx="6" />
