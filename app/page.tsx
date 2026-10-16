@@ -1,24 +1,40 @@
-import SmoothScroll from "@/components/SmoothScroll";
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Work from "@/components/Work";
-import Skills from "@/components/Skills";
-import Contact from "@/components/Contact";
-import Reveals from "@/components/Reveals";
+import TopBar from "@/components/canvas/TopBar";
+import LayersNav from "@/components/canvas/LayersNav";
+import Board from "@/components/canvas/Board";
+import MoreWork from "@/components/canvas/MoreWork";
+import Process from "@/components/canvas/Process";
+import Experience from "@/components/canvas/Experience";
+import Libraries from "@/components/canvas/Libraries";
+import Contact from "@/components/canvas/Contact";
+import { BottomBar, Overlays, SiteFooter } from "@/components/canvas/Chrome";
+import CanvasMotion from "@/components/canvas/CanvasMotion";
+import LogoMorph from "@/components/canvas/LogoMorph";
+import LayerSync from "@/components/canvas/LayerSync";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <Nav />
-      <main>
-        <Hero />
-        <About />
-        <Work />
-        <Skills />
-        <Contact />
+    <>
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
+      <TopBar />
+      <LayersNav />
+      <main id="main" tabIndex={-1}>
+        <Board />
+        <div className="after">
+          <MoreWork />
+          <Process />
+          <Experience />
+          <Libraries />
+          <Contact />
+        </div>
       </main>
-      <Reveals />
-    </SmoothScroll>
+      <SiteFooter />
+      <BottomBar />
+      <Overlays />
+      <LayerSync />
+      <LogoMorph />
+      <CanvasMotion />
+    </>
   );
 }

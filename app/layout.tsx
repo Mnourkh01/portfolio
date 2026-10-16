@@ -1,54 +1,38 @@
-import type { Metadata } from "next";
-import { Archivo, Archivo_Black, IBM_Plex_Mono } from "next/font/google";
-import { SITE_URL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Sans, Schibsted_Grotesk } from "next/font/google";
+import {
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  PERSON,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/lib/site";
+import { colorTokens, tokenHex } from "@/lib/tokens";
 import "./globals.css";
 
-const sans = Archivo({
+const display = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-sans-a",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-schibsted",
   display: "swap",
 });
 
-const display = Archivo_Black({
+const body = Instrument_Sans({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-display-a",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-instrument",
   display: "swap",
 });
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono-plex",
-  display: "swap",
-});
-
-const DESCRIPTION =
-  "Portfolio of Mohammad Nour, a backend-focused full-stack engineer in Amman building secure, multi-tenant backend systems in Java, Kotlin, PHP, and TypeScript.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Mohammad Nour · Backend Engineer",
-    template: "%s · Mohammad Nour",
-  },
-  description: DESCRIPTION,
-  keywords: [
-    "Mohammad Nour",
-    "backend engineer",
-    "full-stack engineer",
-    "Java",
-    "Kotlin",
-    "PHP",
-    "TypeScript",
-    "Spring Boot",
-    "Laravel",
-    "multi-tenant",
-    "Amman",
-    "Jordan",
-  ],
-  authors: [{ name: "Mohammad Nour", url: GITHUB_URL }],
-  creator: "Mohammad Nour",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  authors: [{ name: PERSON.name, url: GITHUB_URL }],
+  creator: PERSON.name,
   alternates: { canonical: "/" },
   robots: {
     index: true,
@@ -56,66 +40,88 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   openGraph: {
-    type: "website",
+    type: "profile",
     url: SITE_URL,
-    siteName: "Mohammad Nour",
-    title: "Mohammad Nour · Backend Engineer",
-    description:
-      "Secure, multi-tenant backend systems in Java, Kotlin, PHP & TypeScript.",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohammad Nour · Backend Engineer",
-    description:
-      "Secure, multi-tenant backend systems in Java, Kotlin, PHP & TypeScript.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
 };
 
-export const viewport = { themeColor: "#131417" };
+export const viewport: Viewport = {
+  themeColor: tokenHex("canvas"),
+  width: "device-width",
+  initialScale: 1,
+};
 
-const personJsonLd = {
+const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Mohammad Nour Ali Al-Khushieny",
-  alternateName: "Mohammad Nour",
-  url: SITE_URL,
-  jobTitle: "Backend Engineer",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Amman",
-    addressCountry: "JO",
-  },
-  email: "mailto:m.nourkh01@gmail.com",
-  sameAs: [GITHUB_URL, LINKEDIN_URL],
-  knowsAbout: [
-    "Java",
-    "Kotlin",
-    "PHP",
-    "TypeScript",
-    "Spring Boot",
-    "Laravel",
-    "PostgreSQL",
-    "Redis",
-    "Multi-tenant systems",
-    "REST API design",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: PERSON.name,
+      url: SITE_URL,
+      jobTitle: PERSON.role,
+      description: PERSON.line,
+      email: `mailto:${EMAIL}`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: PERSON.city,
+        addressCountry: PERSON.countryCode,
+      },
+      worksFor: {
+        "@type": "Organization",
+        name: PERSON.company,
+        url: PERSON.companyUrl,
+      },
+      sameAs: [GITHUB_URL, LINKEDIN_URL],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      inLanguage: "en",
+      publisher: { "@id": `${SITE_URL}/#person` },
+      about: { "@id": `${SITE_URL}/#person` },
+    },
   ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+const BOOT = `(function(){try{
+var d=document.documentElement;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+d.classList.add('motion');
+if(!location.hash)d.classList.add('intro-pending');
+if(matchMedia('(min-width: 1200px)').matches){
+var vw=d.clientWidth-240,vh=innerHeight-48;
+var s=Math.min((vw-112)/1440,(vh-132)/900);
+d.classList.add('is-board');
+d.style.setProperty('--cam-s',s.toFixed(5));
+d.style.setProperty('--cam-x',(vw/2-720*s).toFixed(2)+'px');
+d.style.setProperty('--cam-y',(vh/2-(450-8/s)*s).toFixed(2)+'px');
+}
+setTimeout(function(){if(!window.__canvasReady){d.classList.remove('motion','intro-pending','is-board');}},6000);
+}catch(e){}})();`;
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${sans.variable} ${display.variable} ${mono.variable}`}
-    >
+    <html lang="en" dir="ltr" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+      <head>
+        <style>{`:root{${colorTokens.map((t) => `${t.cssVar}:${t.hex}`).join(";")}}`}</style>
+        <script dangerouslySetInnerHTML={{ __html: BOOT }} />
+      </head>
       <body>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
   );

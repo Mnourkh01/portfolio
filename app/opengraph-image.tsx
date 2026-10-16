@@ -1,12 +1,31 @@
 import { ImageResponse } from "next/og";
-import { LOGO_BARS, LOGO_VIEWBOX } from "@/lib/logo";
+import { LOGO_CODE, LOGO_LETTERS, LOGO_STROKE, LOGO_VIEWBOX } from "@/lib/logo";
+import { FILE, PERSON } from "@/lib/site";
+import { tokenHex } from "@/lib/tokens";
 
 export const dynamic = "force-static";
-export const alt = "Mohammad Nour · Backend Engineer";
+export const alt = "Mohammad Nour, Product Engineer in Amman, Jordan";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const TAGS = ["Java", "Kotlin", "PHP", "TypeScript", "Spring Boot", "Laravel"];
+const C = {
+  canvas: tokenHex("canvas"),
+  frame: tokenHex("frame"),
+  ink: tokenHex("ink"),
+  ink2: tokenHex("ink-2"),
+  ink3: tokenHex("ink-3"),
+  line: tokenHex("line"),
+  accent: tokenHex("accent"),
+  accentInk: tokenHex("accent-ink"),
+  me: tokenHex("cursor-me"),
+};
+
+const HANDLES = [
+  { left: -7, top: -7 },
+  { right: -7, top: -7 },
+  { left: -7, bottom: -7 },
+  { right: -7, bottom: -7 },
+];
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -17,97 +36,103 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#0e1013",
-          color: "#ece7dd",
-          padding: "72px",
-          fontFamily: "monospace",
-          position: "relative",
+          background: C.canvas,
+          padding: "40px 56px 48px",
+          fontFamily: "sans-serif",
         }}
       >
-        {/* green accent bar */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+          <div style={{ display: "flex", fontSize: 20, color: C.ink3 }}>Home / Desktop 1440</div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "6px 14px",
+              borderRadius: 999,
+              background: C.frame,
+              border: `1px solid ${C.line}`,
+              fontSize: 20,
+              color: C.ink,
+            }}
+          >
+            <div style={{ width: 12, height: 12, borderRadius: 999, background: C.me }} />
+            Live
+          </div>
+        </div>
         <div
           style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            bottom: 0,
-            width: 12,
-            background: "#ff5c1c",
-          }}
-        />
-        {/* glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: -160,
-            right: -120,
-            width: 520,
-            height: 520,
-            borderRadius: 9999,
-            background: "rgba(255,159,28,0.12)",
-            filter: "blur(40px)",
-          }}
-        />
-
-        {/* top row */}
-        <div
-          style={{
+            flex: 1,
             display: "flex",
-            alignItems: "center",
+            flexDirection: "column",
             justifyContent: "space-between",
+            background: C.frame,
+            borderRadius: 6,
+            padding: "40px 64px 48px",
+            boxShadow: "0 20px 40px -24px rgba(17,17,17,0.35)",
           }}
         >
-          <svg
-            viewBox={LOGO_VIEWBOX}
-            width={106}
-            height={76}
-            fill="#ffb454"
-          >
-            {LOGO_BARS.map(([x, y, w, h, rx]) => (
-              <rect
-                key={`${x}-${y}`}
-                x={x}
-                y={y}
-                width={w}
-                height={h}
-                rx={rx}
-              />
-            ))}
-          </svg>
-          <div style={{ fontSize: 24, color: "#8a8577" }}>github.com/Mnourkh01</div>
-        </div>
-
-        {/* headline */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1 }}>
-            Mohammad Nour
-          </div>
-          <div style={{ fontSize: 36, color: "#ffb454" }}>
-            Backend Engineer · backend-focused full-stack
-          </div>
-        </div>
-
-        {/* tag chips */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
-          {TAGS.map((t) => (
+          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
             <div
-              key={t}
               style={{
+                width: 64,
+                height: 64,
+                borderRadius: 14,
+                background: C.ink,
                 display: "flex",
-                fontSize: 24,
-                color: "#b5ae9c",
-                border: "1px solid rgba(236,231,221,0.25)",
-                borderRadius: 999,
-                padding: "8px 20px",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              {t}
+              <svg viewBox={LOGO_VIEWBOX} width={48} height={35} fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d={LOGO_CODE.left} stroke={C.accent} strokeWidth={LOGO_STROKE.bracket} />
+                <path d={LOGO_CODE.right} stroke={C.accent} strokeWidth={LOGO_STROKE.bracket} />
+                <path d={LOGO_LETTERS} stroke={C.frame} strokeWidth={LOGO_STROKE.letters} />
+              </svg>
             </div>
-          ))}
+            <div style={{ display: "flex", fontSize: 26, color: C.ink3 }}>
+              {FILE.owner} / {FILE.name}
+            </div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", alignSelf: "flex-start", position: "relative", padding: "0 6px" }}>
+              <div style={{ display: "flex", fontSize: 112, fontWeight: 700, letterSpacing: -4, color: C.ink, lineHeight: 1 }}>
+                {PERSON.name}
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: -6,
+                  right: 0,
+                  bottom: -6,
+                  border: `3px solid ${C.accent}`,
+                  display: "flex",
+                }}
+              >
+                {HANDLES.map((h, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      position: "absolute",
+                      width: 14,
+                      height: 14,
+                      background: C.frame,
+                      border: `3px solid ${C.accent}`,
+                      ...h,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div style={{ display: "flex", marginTop: 26, fontSize: 44, fontWeight: 700, color: C.ink }}>
+              {PERSON.role}
+            </div>
+            <div style={{ display: "flex", marginTop: 10, fontSize: 28, color: C.ink2 }}>{PERSON.line}</div>
+          </div>
         </div>
       </div>
     ),
-    size
+    size,
   );
 }

@@ -1,36 +1,25 @@
-// MN bar-mark geometry, traced from the brand logo (25 bars + dot).
-// Shared by LogoMark, the favicon, and the OG image so they never drift.
-export const LOGO_VIEWBOX = "0 0 637 458";
-export const LOGO_WIDTH = 637;
-export const LOGO_HEIGHT = 458;
+// "Frame to code" mark: the corners of a design frame fold into the brackets of <MN/>.
+// One geometry for LogoMark, the favicon and the OG image so they never drift.
+// Both states keep the same command layout so GSAP can tween the numbers between them.
+export const LOGO_VIEWBOX = "2 10 60 44";
+export const LOGO_WIDTH = 60;
+export const LOGO_HEIGHT = 44;
 
-// [x, y, width, height, rx]
-export const LOGO_BARS: ReadonlyArray<
-  readonly [number, number, number, number, number]
-> = [
-  [0, 0, 17, 101, 6],
-  [0, 120, 17, 101, 6],
-  [0, 240, 17, 100, 6],
-  [0, 359, 17, 99, 6],
-  [37, 42, 17, 128, 6],
-  [71, 102, 18, 119, 6],
-  [107, 147, 17, 126, 6],
-  [143, 192, 17, 136, 6],
-  [179, 148, 18, 125, 6],
-  [216, 113, 17, 108, 6],
-  [252, 53, 17, 123, 6],
-  [288, 0, 17, 101, 6],
-  [288, 120, 17, 101, 6],
-  [288, 240, 17, 100, 6],
-  [288, 359, 17, 99, 6],
-  [324, 42, 17, 128, 6],
-  [358, 102, 18, 112, 6],
-  [393, 159, 17, 114, 6],
-  [428, 209, 17, 126, 6],
-  [463, 274, 18, 127, 6],
-  [512, 0, 18, 101, 6],
-  [512, 120, 18, 101, 6],
-  [512, 240, 18, 100, 6],
-  [512, 359, 18, 99, 6],
-  [579, 401, 58, 57, 10],
-];
+export const LOGO_CODE = {
+  left: "M13 20L5 32L5 32M5 32L5 32L13 44",
+  right: "M43 46L46 32L49 18M52 20L59 32L52 44",
+} as const;
+
+export const LOGO_FRAME = {
+  left: "M17 13L9 13L9 21M9 43L9 51L17 51",
+  right: "M47 13L55 13L55 21M55 43L55 51L47 51",
+} as const;
+
+export const LOGO_LETTERS = "M15 39V25l4.75 7.5 4.75-7.5v14M30.5 39V25l8.5 14V25";
+
+// Letters sit left of centre in the code state; in the frame state they grow back to the middle.
+export const LOGO_LETTERS_FRAME = { x: 5, scale: 1.18 } as const;
+
+export const LOGO_STROKE = { bracket: 3, letters: 3.4 } as const;
+
+export const LOGO_LIVE_EVENT = "canvas:live";

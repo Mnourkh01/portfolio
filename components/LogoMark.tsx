@@ -1,8 +1,10 @@
 import {
-  LOGO_BARS,
+  LOGO_CODE,
+  LOGO_HEIGHT,
+  LOGO_LETTERS,
+  LOGO_STROKE,
   LOGO_VIEWBOX,
   LOGO_WIDTH,
-  LOGO_HEIGHT,
 } from "@/lib/logo";
 
 type Props = {
@@ -10,7 +12,7 @@ type Props = {
   className?: string;
 };
 
-/** The MN bar-mark as inline SVG. Colored via `currentColor`. */
+/** The <MN/> mark. Brackets use `currentColor`; letters use the frame colour. Rendered in its final (code) state. */
 export default function LogoMark({ height = 26, className }: Props) {
   const width = Math.round((height * LOGO_WIDTH) / LOGO_HEIGHT);
   return (
@@ -18,14 +20,17 @@ export default function LogoMark({ height = 26, className }: Props) {
       viewBox={LOGO_VIEWBOX}
       width={width}
       height={height}
-      fill="currentColor"
       className={className}
       aria-hidden="true"
       focusable="false"
+      data-logo=""
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      {LOGO_BARS.map(([x, y, w, h, rx]) => (
-        <rect key={`${x}-${y}`} x={x} y={y} width={w} height={h} rx={rx} />
-      ))}
+      <path data-logo-left="" d={LOGO_CODE.left} stroke="currentColor" strokeWidth={LOGO_STROKE.bracket} />
+      <path data-logo-right="" d={LOGO_CODE.right} stroke="currentColor" strokeWidth={LOGO_STROKE.bracket} />
+      <path data-logo-letters="" d={LOGO_LETTERS} stroke="var(--frame)" strokeWidth={LOGO_STROKE.letters} />
     </svg>
   );
 }
