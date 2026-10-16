@@ -51,9 +51,11 @@ export default function LogoMorph() {
         morph();
       } else if (!morphed) {
         all.forEach(toFrame);
+        window.clearTimeout(fallback);
         fallback = window.setTimeout(morph, 8000);
       }
     };
+    if (document.documentElement.classList.contains("intro-pending")) all.forEach(toFrame);
     window.addEventListener(LOGO_LIVE_EVENT, onLive);
 
     const replays = all.flatMap((m) => {

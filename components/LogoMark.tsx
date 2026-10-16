@@ -30,7 +30,7 @@ export default function LogoMark({ height = 26, className }: Props) {
     >
       <path data-logo-left="" d={LOGO_CODE.left} stroke="currentColor" strokeWidth={LOGO_STROKE.bracket} />
       <path data-logo-right="" d={LOGO_CODE.right} stroke="currentColor" strokeWidth={LOGO_STROKE.bracket} />
-      <path data-logo-letters="" d={LOGO_LETTERS} stroke="var(--frame)" strokeWidth={LOGO_STROKE.letters} />
+      <path data-logo-letters="" d={LOGO_LETTERS} style={{ stroke: "var(--frame)" }} strokeWidth={LOGO_STROKE.letters} />
     </svg>
   );
 }
