@@ -2854,8 +2854,13 @@ main {
     margin: var(--s-12) auto 0;
   }
 
-  .sec > .flabel {
+  .sec > .flabel,
+  .mw > .flabel {
     --z: 1;
+  }
+
+  .mw {
+    position: relative;
   }
 
   .sec-frame {
