@@ -6,8 +6,10 @@ function ItemIcon({ name }: { name: string }) {
   const brand = brandIcons[name];
   if (!brand) return <Component aria-hidden="true" />;
   return (
-    <svg className="lib-brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style={brand.hex ? { color: brand.hex } : undefined}>
-      <path d={brand.path} fill="currentColor" />
+    <svg className="lib-brand" viewBox={brand.viewBox} aria-hidden="true" focusable="false">
+      {brand.parts.map((part) => (
+        <path key={part.d.slice(0, 24)} d={part.d} style={part.hex ? { fill: part.hex } : { fill: "currentColor" }} />
+      ))}
     </svg>
   );
 }
