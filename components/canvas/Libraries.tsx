@@ -1,5 +1,16 @@
 import { ChevronDown, Component, Library } from "lucide-react";
+import { brandIcons } from "@/lib/brand-icons";
 import { stack } from "@/lib/experience";
+
+function ItemIcon({ name }: { name: string }) {
+  const brand = brandIcons[name];
+  if (!brand) return <Component aria-hidden="true" />;
+  return (
+    <svg className="lib-brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style={brand.hex ? { color: brand.hex } : undefined}>
+      <path d={brand.path} fill="currentColor" />
+    </svg>
+  );
+}
 
 export default function Libraries() {
   return (
@@ -26,7 +37,7 @@ export default function Libraries() {
               <ul>
                 {group.items.map((item) => (
                   <li key={item}>
-                    <Component aria-hidden="true" />
+                    <ItemIcon name={item} />
                     {item}
                   </li>
                 ))}
