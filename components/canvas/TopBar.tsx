@@ -26,7 +26,7 @@ export default function TopBar() {
     <header className="topbar">
       <div className="tb-left">
         <a className="tb-logo" href="#home" aria-label={`${PERSON.name}, back to the top`}>
-          <LogoMark height={22} />
+          <LogoMark height={20} />
         </a>
         <div className="tb-tools" aria-hidden="true">
           {TOOLS.map(({ id, Icon }) => (

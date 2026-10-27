@@ -1,5 +1,7 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { LOGO_CODE, LOGO_LETTERS, LOGO_STROKE, LOGO_VIEWBOX } from "@/lib/logo";
+import { LOGO_SRC } from "@/lib/logo";
 import { FILE, PERSON } from "@/lib/site";
 import { tokenHex } from "@/lib/tokens";
 
@@ -27,7 +29,10 @@ const HANDLES = [
   { right: -7, bottom: -7 },
 ];
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const logo = await readFile(join(process.cwd(), "public", LOGO_SRC));
+  const logoDataUrl = `data:image/png;base64,${logo.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -78,17 +83,13 @@ export default function OpengraphImage() {
                 width: 64,
                 height: 64,
                 borderRadius: 14,
-                background: C.ink,
+                background: C.frame,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <svg viewBox={LOGO_VIEWBOX} width={48} height={35} fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path d={LOGO_CODE.left} stroke={C.accent} strokeWidth={LOGO_STROKE.bracket} />
-                <path d={LOGO_CODE.right} stroke={C.accent} strokeWidth={LOGO_STROKE.bracket} />
-                <path d={LOGO_LETTERS} stroke={C.frame} strokeWidth={LOGO_STROKE.letters} />
-              </svg>
+              <img src={logoDataUrl} width={52} height={34} alt="" />
             </div>
             <div style={{ display: "flex", fontSize: 26, color: C.ink3 }}>
               {FILE.owner} / {FILE.name}

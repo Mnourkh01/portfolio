@@ -250,7 +250,7 @@ main:focus {
   width: 40px;
   height: 40px;
   border-radius: var(--r-sm);
-  background: var(--ink);
+  background: var(--frame);
   color: var(--accent);
 }
 
@@ -563,7 +563,7 @@ main {
   width: 32px;
   height: 32px;
   border-radius: var(--r-sm);
-  background: var(--ink);
+  background: var(--frame);
   color: var(--accent);
 }
 
@@ -2595,9 +2595,9 @@ main {
     border-radius: calc(11 * var(--u));
   }
 
-  .hn-mark svg {
+  .hn-mark img {
     width: auto;
-    height: calc(17 * var(--u));
+    height: calc(24 * var(--u));
   }
 
   .hero-nav ul {
