@@ -8,7 +8,6 @@ import Libraries from "@/components/canvas/Libraries";
 import Contact from "@/components/canvas/Contact";
 import { BottomBar, Overlays, SiteFooter } from "@/components/canvas/Chrome";
 import CanvasMotion from "@/components/canvas/CanvasMotion";
-import LogoMorph from "@/components/canvas/LogoMorph";
 import LayerSync from "@/components/canvas/LayerSync";
 
 export default function Home() {
@@ -33,7 +32,6 @@ export default function Home() {
       <BottomBar />
       <Overlays />
       <LayerSync />
-      <LogoMorph />
       <CanvasMotion />
     </>
   );

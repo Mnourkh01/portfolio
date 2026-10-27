@@ -1,5 +1,3 @@
-import { LOGO_LIVE_EVENT } from "@/lib/logo";
-
 export function one<T extends Element = HTMLElement>(selector: string, root: ParentNode = document): T | null {
   return root.querySelector<T>(selector);
 }
@@ -14,7 +12,6 @@ export function setKid(name: string | null) {
 
 export function setLive(live: boolean) {
   one(".fbadge")?.classList.toggle("is-draft", !live);
-  window.dispatchEvent(new CustomEvent(LOGO_LIVE_EVENT, { detail: live }));
 }
 
 export function settleHero() {
