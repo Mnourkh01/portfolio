@@ -99,7 +99,7 @@ export default function EngineDiagram() {
             </li>
           </ul>
         </div>
-        <ul className="eng-stores" aria-label="Five live storefronts">
+        <ul className="eng-stores" aria-label="Live storefronts, each sending a signed health report">
           {STORES.map((s) => (
             <li
               key={s.id}

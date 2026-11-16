@@ -61,7 +61,7 @@ export const flagships: Flagship[] = [
     link: { href: "https://karmetta.com", label: "karmetta.com" },
     privateNote: null,
     notes: [
-      { text: "328 automated tests", by: "me" },
+      { text: "Floor plans and table booking", by: "me" },
       { text: "Live at karmetta.com", by: "note" },
     ],
     visual: {
@@ -85,11 +85,11 @@ export const flagships: Flagship[] = [
     size: "Main component",
     kind: "Multi-tenant commerce engine",
     summary:
-      "Laravel 12 and PHP 8.4, built as reusable Composer packages. FoloEngine powers 5 live storefronts from one shared control plane.",
+      "Laravel 12 and PHP 8.4, built as reusable Composer packages. It runs the company’s live stores from one shared control plane and has grown into Platform V4.",
     stack: ["Laravel 12", "PHP 8.4", "Filament", "Composer"],
     link: null,
     privateNote: "Company work",
-    notes: [{ text: "5 live storefronts", by: "me" }],
+    notes: [{ text: "Started its V3 codebase", by: "me" }],
     visual: { type: "diagram" },
     col: 2,
     row: 0,
@@ -106,10 +106,10 @@ export const flagships: Flagship[] = [
       "One Windows workspace for terminals and AI coding agents. Claude Code, Codex, Gemini, OpenCode and Cursor run side by side in up to 10 live panes, each pane shows whether it is working, idle or needs you, and every pane comes back after a restart.",
     stack: ["Rust", "Tauri 2", "React", "TypeScript", "xterm.js"],
     link: null,
-    privateNote: "Company work, source private",
+    privateNote: "Built at Folowise, source private",
     notes: [
       { text: "The terminal comes first", by: "me" },
-      { text: "Rust core, React UI", by: "note" },
+      { text: "Used daily by me and a teammate", by: "note" },
     ],
     visual: {
       type: "shot",
@@ -140,7 +140,7 @@ export const flagships: Flagship[] = [
     },
     privateNote: null,
     notes: [
-      { text: "8 public releases", by: "me" },
+      { text: "17 public releases", by: "me" },
       { text: "Runs on your PC, no cloud", by: "note" },
     ],
     visual: {
@@ -233,17 +233,17 @@ export const flagships: Flagship[] = [
 
 export const moreWork: MoreWork[] = [
   {
-    id: "souq",
-    name: "Folowise Souq",
+    id: "printmanjo",
+    name: "Printman",
     summary:
-      "Multi-vendor local marketplace: three roles (admin, store owner, customer), store approval, checkout split one order per store, verified-buyer reviews.",
-    stack: ["Laravel 12", "Filament 5", "Alpine.js", "MySQL"],
-    link: { href: "https://souq.folowise.com/", label: "souq.folowise.com" },
+      "Print shop in Amman on FoloEngine, in Arabic and English. I built the admin, the order timeline with customer emails, PDF receipts and sales reports, quote requests, and Cash on Delivery and CliQ checkout.",
+    stack: ["Laravel", "FoloEngine", "Alpine.js", "mPDF"],
+    link: { href: "https://printmanjo.com/", label: "printmanjo.com" },
     shot: {
-      src: "/work/souq.webp",
+      src: "/work/printmanjo.webp",
       width: 1440,
       height: 900,
-      alt: "Folowise Souq homepage on a dark map background with the headline Every local shop, one place to grow and a search box for stores, products or a place",
+      alt: "Printman homepage with the headline Make it your own, a search box for stickers, banners and uniforms, and printed samples: a branded stand, business cards and a hoodie",
     },
   },
   {
@@ -262,9 +262,9 @@ export const moreWork: MoreWork[] = [
   },
   {
     id: "pet-store",
-    name: "Pet e-commerce",
+    name: "Opti4Club",
     summary:
-      "Pet-supply store built twice: WordPress and WooCommerce, then a Laravel rebuild that became the first production store on FoloEngine. Arabic first, RTL.",
+      "Pet-supply store built twice: WordPress and WooCommerce, then a Laravel rebuild I led (179 products, 301 redirects for old links) that became the first production store on FoloEngine. Arabic first, RTL.",
     stack: ["Laravel", "FoloEngine", "WooCommerce"],
     link: { href: "https://opti4club.com/", label: "opti4club.com" },
     shot: {
@@ -275,20 +275,17 @@ export const moreWork: MoreWork[] = [
     },
   },
   {
-    id: "buildnova",
-    name: "BuildNova",
+    id: "qrindo",
+    name: "Qrindo",
     summary:
-      "Construction company website built on WordPress and Elementor, with structured QA before launch.",
-    stack: ["WordPress", "Elementor"],
-    link: {
-      href: "https://buildnovaconstruction.ca/",
-      label: "buildnovaconstruction.ca",
-    },
+      "Dynamic QR codes and short links. I led a security hardening pass, made payment webhooks safe to retry, and kept scan analytics working through database outages.",
+    stack: ["TypeScript", "Hono", "PostgreSQL", "Redis", "NATS"],
+    link: { href: "https://qrindo.com/", label: "qrindo.com" },
     shot: {
-      src: "/work/buildnova.webp",
+      src: "/work/qrindo.webp",
       width: 1440,
       height: 900,
-      alt: "BuildNova Construction homepage over a photo of a bright staircase, with the headline Building Your Dreams, One Project at a Time and a Get a quote button",
+      alt: "Qrindo homepage with the headline Print once. Change it anytime, and a printed QR card on a cafe counter that now points to a spring menu",
     },
   },
   {
@@ -313,15 +310,6 @@ export const moreWork: MoreWork[] = [
       href: "https://github.com/Mnourkh01/FoloPrint-design-studio",
       label: "FoloPrint-design-studio",
     },
-    shot: null,
-  },
-  {
-    id: "qrfolo",
-    name: "qrfolo",
-    summary:
-      "Dynamic QR and URL-shortener product with geo, device and language targeting, split testing and an async analytics pipeline.",
-    stack: ["TypeScript", "PostgreSQL", "Redis", "NATS"],
-    link: null,
     shot: null,
   },
   {
@@ -357,6 +345,18 @@ export const moreWork: MoreWork[] = [
     link: {
       href: "https://github.com/Mnourkh01/spring-boot-java-starter",
       label: "spring-boot-java-starter",
+    },
+    shot: null,
+  },
+  {
+    id: "portfolio",
+    name: "This portfolio",
+    summary:
+      "Designed and built as a live design file: layers, frames, comments and a logo that folds from frame to code. A static Next.js site with GSAP motion.",
+    stack: ["Next.js", "TypeScript", "GSAP"],
+    link: {
+      href: "https://github.com/Mnourkh01/portfolio",
+      label: "portfolio",
     },
     shot: null,
   },

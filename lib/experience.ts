@@ -24,10 +24,10 @@ export const roles: Role[] = [
   {
     id: "folowise",
     company: "Folowise",
-    title: "Product Engineer",
+    title: "AI-Driven Product Engineer",
     place: "Amman, Jordan · Hybrid · Full-time",
     summary:
-      "I build and ship Folowise’s commerce products, from the shared engine to the live stores that run on it.",
+      "I build and ship Folowise’s commerce products, from the shared engine to the live stores that run on it, and Warsha, an internal workspace for AI coding agents.",
     period: "Oct 2024 to Present",
     current: true,
   },

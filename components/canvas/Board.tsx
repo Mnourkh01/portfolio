@@ -13,8 +13,9 @@ export default function Board() {
             <div className="board-title" data-key="work">
               <h2 id="work-title">Selected work</h2>
               <p>
-                Six frames from the file, each one designed and built by me. Karmetta and FoloPrint run
-                on FoloEngine, the main component between them.
+                Six frames from the file. I built Warsha, EchoFlow and Inside the Harness alone; Karmetta,
+                FoloEngine and FoloPrint are team products, and each frame notes the part I built.
+                Karmetta and FoloPrint run on FoloEngine, the main component between them.
               </p>
             </div>
             {flagships.map((project, i) => (

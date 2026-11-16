@@ -33,7 +33,7 @@ export default function MoreWork() {
           Page 2
         </p>
         <h2 id="more-title">More work</h2>
-        <p>Live sites, a marketplace, product tools and open-source backend starters.</p>
+        <p>Live sites, product tools and open-source backend starters.</p>
       </div>
 
       <ul className="mw-grid mw-shots">

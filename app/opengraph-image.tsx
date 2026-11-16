@@ -6,7 +6,7 @@ import { FILE, PERSON } from "@/lib/site";
 import { tokenHex } from "@/lib/tokens";
 
 export const dynamic = "force-static";
-export const alt = "Mohammad Nour, Product Engineer in Amman, Jordan";
+export const alt = "Mohammad Nour, AI Product Engineer in Amman, Jordan";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

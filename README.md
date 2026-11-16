@@ -1,6 +1,6 @@
 # Portfolio, Mohammad Nour
 
-Personal site of **Mohammad Nour**, Product Engineer in Amman, Jordan.
+Personal site of **Mohammad Nour**, AI Product Engineer in Amman, Jordan. Live at https://mohammad-nour.pages.dev
 
 ## The design: the canvas
 
