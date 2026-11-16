@@ -56,7 +56,7 @@ export const flagships: Flagship[] = [
     size: "1440 × 900",
     kind: "Restaurant platform, runs on FoloEngine",
     summary:
-      "QR table ordering, a kitchen display split by station and four staff roles, in Arabic and English.",
+      "QR table ordering, a kitchen display split by station and four staff roles, in Arabic and English. Its next version, on Platform V4, is launching soon.",
     stack: ["Laravel", "Alpine.js", "Tailwind"],
     link: { href: "https://karmetta.com", label: "karmetta.com" },
     privateNote: null,

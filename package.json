@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:pages": "next build && npx -y wrangler@4.134.0 pages deploy out --project-name=mohammad-nour --branch=main"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

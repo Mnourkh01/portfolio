@@ -40,6 +40,19 @@ npm run dev      # http://localhost:3000
 npm run build    # static export to out/
 ```
 
+## Deploy
+
+The site lives at https://mohammad-nour.pages.dev, a Cloudflare Pages project fed by direct upload:
+
+```bash
+npx wrangler@4.134.0 login   # once, opens the browser
+npm run deploy:pages         # builds, then uploads out/ to the mohammad-nour project
+```
+
+A push to `main` still deploys the older Workers copy at portfolio.m-nourkh01.workers.dev through
+Workers Builds. Its canonical URL points at the Pages address, which tells search engines that the
+Pages copy is the main one.
+
 ## Structure
 
 ```

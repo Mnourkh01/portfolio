@@ -11,7 +11,7 @@ type Step = {
 
 const STEPS: Step[] = [
   { id: "design", title: "Design", text: "I own the layout, the UX and the visuals.", icon: <PanelsTopLeft />, gate: false },
-  { id: "build", title: "Build", text: "From the backend to the UI, end to end.", icon: <Code />, gate: false },
+  { id: "build", title: "Build", text: "From the backend to the UI. Agents draft, and I review what they write.", icon: <Code />, gate: false },
   {
     id: "test",
     title: "Test gate",
@@ -34,8 +34,8 @@ export default function Process() {
         <div className="p-head">
           <h2 id="process-title">How I ship</h2>
           <p>
-            AI coding agents (Claude Code, Codex) are part of the daily workflow, and every change is
-            still tested and verified before it ships.
+            AI coding agents (Claude Code, Codex) write much of my first draft. I own the design, the
+            review and what ships, and every change is tested and verified before it does.
           </p>
         </div>
         <div className="flow-wrap">
